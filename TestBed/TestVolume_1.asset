@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6186973052653129908
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7443357ba9cb024f9e0f59d75c1c066, type: 3}
+  m_Name: HalfToneOnlyPointVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  _visibleInSceneview:
+    m_OverrideState: 1
+    m_Value: 0
+  _Density:
+    m_OverrideState: 1
+    m_Value: 200
+  _Radius:
+    m_OverrideState: 1
+    m_Value: 1.2
+  _SmoothEdge:
+    m_OverrideState: 1
+    m_Value: 0.2
+  _HalfToneFactor:
+    m_OverrideState: 1
+    m_Value: 0.5
+  _SourceFactor:
+    m_OverrideState: 1
+    m_Value: 0.5
+  _Lightness:
+    m_OverrideState: 1
+    m_Value: 1
+  _PointColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0, b: 0.51284885, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+  _ColorFactor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+--- !u!114 &-1926052526102047969
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012d3263da3d1234bb848967c99084f1, type: 3}
+  m_Name: Glitch
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  block:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  drift:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 1
+  jitter:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 1
+  jump:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 1
+  shake:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: TestVolume_1
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -6186973052653129908}
+  - {fileID: -1926052526102047969}
+  - {fileID: 5592349666684220558}
+--- !u!114 &5592349666684220558
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21f170b640032a4ba47bfe9e6497f01, type: 3}
+  m_Name: WorldScanVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  ColorAddMode:
+    m_OverrideState: 1
+    m_Value: 0
+  GridSize:
+    m_OverrideState: 1
+    m_Value: 5
+  GridLineWidth:
+    m_OverrideState: 0
+    m_Value: 2
+  AddModeID: 1451

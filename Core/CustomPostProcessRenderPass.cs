@@ -96,7 +96,7 @@ namespace SleeplessOwl.URPPostProcessing
 
             for (int i = 0; i < activeVolumeList.Count; i++)
             {
-                var comp = activeVolumeList[i];
+                var volumeComp = activeVolumeList[i];
 
                 if (i == 0)
                 {
@@ -126,9 +126,9 @@ namespace SleeplessOwl.URPPostProcessing
                 }
                 cb.SetRenderTarget(renderTarget);
 
-                cb.BeginSample(comp.displayName);
-                comp.Render(cb, renderingData.cameraData.camera, source, renderTarget);
-                cb.EndSample(comp.displayName);
+                cb.BeginSample(volumeComp.displayName);
+                volumeComp.Render(cb, renderingData.cameraData.camera, source, renderTarget);
+                cb.EndSample(volumeComp.displayName);
             }
 
             cb.ReleaseTemporaryRT(source);

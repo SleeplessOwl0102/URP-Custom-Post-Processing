@@ -15,9 +15,9 @@ MonoBehaviour:
   afterSkybox:
   - SleeplessOwl.Volume.OutlineVolume
   beforePostProcess:
-  - SleeplessOwl.URPPostProcessing.Glitch
-  - SleeplessOwl.PostProcess.HalfTone
   - SleeplessOwl.Indev.FogVolume
-  - SleeplessOwl.Volume.WorldScanVolume
+  - SleeplessOwl.Volume.WorldPositionVolume
+  - SleeplessOwl.PostProcess.HalfToneVolume
+  - SleeplessOwl.URPPostProcessing.Glitch
   afterPostProcess:
   - SleeplessOwl.URPPostProcessing.ExampleVolume

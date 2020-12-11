@@ -36,7 +36,7 @@ float2 _Jitter;
 float2 _Jump;
 float _Shake;
 
-TEXTURE2D(_InputTexture);
+TEXTURE2D(_PostSource);
 
 float FRandom(uint seed)
 {
@@ -73,7 +73,7 @@ float4 Fragment(Varyings input) : SV_Target
     // UV recalculation
 	uv = frac((ssp + 0.5) / _ScreenParams.xy);
 
-	float4 c = LOAD_TEXTURE2D(_InputTexture, uv * _ScreenParams.xy);
+	float4 c = LOAD_TEXTURE2D(_PostSource, uv * _ScreenParams.xy);
 
     // Block damage (color mixing)
     if (frac(rand * 1234) < _BlockStrength * 0.1)
