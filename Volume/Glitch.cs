@@ -11,10 +11,7 @@ namespace SleeplessOwl.URPPostProcessing
     public class Glitch : CustomVolumeComponent
     {
         public ClampedFloatParameter block = new ClampedFloatParameter(0, 0, 1);
-        public ClampedFloatParameter drift = new ClampedFloatParameter(0, 0, 1);
-        public ClampedFloatParameter jitter = new ClampedFloatParameter(0, 0, 1);
-        public ClampedFloatParameter jump = new ClampedFloatParameter(0, 0, 1);
-        public ClampedFloatParameter shake = new ClampedFloatParameter(0, 0, 1);
+        
 
         Material _material;
         float _prevTime;

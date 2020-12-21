@@ -10,8 +10,8 @@ struct Attributes
 
 struct Varyings
 {
-    float4 positionCS : SV_POSITION;
-    float2 texcoord   : TEXCOORD0;
+    float4 posCS : SV_POSITION;
+	float2 uv: TEXCOORD0;
 };
 
 Varyings Vertex(Attributes input)
@@ -19,8 +19,8 @@ Varyings Vertex(Attributes input)
     Varyings output;
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
-    output.positionCS = GetFullScreenTriangleVertexPosition(input.vertexID);
-    output.texcoord = GetFullScreenTriangleTexCoord(input.vertexID);
+	output.posCS = GetFullScreenTriangleVertexPosition(input.vertexID);
+	output.uv = GetFullScreenTriangleTexCoord(input.vertexID);
     return output;
 }
 
@@ -45,13 +45,13 @@ float FRandom(uint seed)
 
 float4 Fragment(Varyings input) : SV_Target
 {
-    float2 uv = input.texcoord;
+    float2 uv = input.uv;
 
     uint block_size = 32;
 	uint columns = _ScreenParams.x / block_size;
 
     // Block index
-	uint2 block_xy = input.texcoord * _ScreenParams.xy / block_size;
+	uint2 block_xy = input.uv * _ScreenParams.xy / block_size;
     uint block = block_xy.y * columns + block_xy.x;
 
     // Segment index
@@ -68,7 +68,7 @@ float4 Fragment(Varyings input) : SV_Target
 
     // Screen space position reconstruction
     uint2 ssp = uint2(block % columns, block / columns) * block_size;
-	ssp += (uint2) (input.texcoord * _ScreenParams.xy) % block_size;
+	ssp += (uint2) (input.uv * _ScreenParams.xy) % block_size;
 
     // UV recalculation
 	uv = frac((ssp + 0.5) / _ScreenParams.xy);

@@ -4,6 +4,7 @@ Shader "Owl Post-Processing/Glitch"
     {
         Pass
         {
+            Name "Glitch"
             Cull Off ZWrite Off ZTest Always
             HLSLPROGRAM
             #pragma vertex Vertex
@@ -11,6 +12,7 @@ Shader "Owl Post-Processing/Glitch"
             #include "Glitch.hlsl"
             ENDHLSL
         }
+
     }
     Fallback Off
 }
