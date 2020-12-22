@@ -27,7 +27,7 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void Setup()
         {
-            material = CoreUtils.CreateEngineMaterial("URP Custom PostEffect/World Position");
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/World Position");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier destination)
@@ -38,7 +38,7 @@ namespace SleeplessOwl.URPPostProcessing
             material.SetFloat(_UnitCubeGridCount, 1 / GridSize.value);
             material.SetFloat(_GridLineWidth, GridLineWidth.value);
 
-            cb.SetSourceTexture(source);
+            cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(material, destination);
         }
     }

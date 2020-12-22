@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   afterSkybox:
   - SleeplessOwl.URPPostProcessing.OutlineVolume
+  - SleeplessOwl.URPPostProcessing.CloudShadowVolume
   beforePostProcess:
   - SleeplessOwl.URPPostProcessing.GlitchVolume
   - SleeplessOwl.URPPostProcessing.HalfToneVolume

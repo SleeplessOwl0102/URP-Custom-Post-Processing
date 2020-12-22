@@ -24,7 +24,7 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void Setup()
         {
-            material = CoreUtils.CreateEngineMaterial("URP Custom PostEffect/HalfTone");
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/HalfTone");
         }
 
         public void UpdateParameter()
@@ -42,7 +42,7 @@ namespace SleeplessOwl.URPPostProcessing
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier destination)
         {
             UpdateParameter();
-            cb.SetSourceTexture(source);
+            cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(material, destination);
         }
     }

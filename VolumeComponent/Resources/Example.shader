@@ -1,4 +1,4 @@
-﻿Shader "Owl Post-Processing/Example"
+﻿Shader "SleeplessOwl/Post-Process/Example"
 {
     HLSLINCLUDE
     #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"

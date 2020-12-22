@@ -9,20 +9,14 @@ namespace SleeplessOwl.URPPostProcessing
     [Serializable, VolumeComponentMenu("SleeplessOwl PostProcessing/Glitch")]
     public class GlitchVolume : PostProcessVolumeComponent
     {
-
         public FloatParameter Speed = new FloatParameter(10f);
-
         public FloatParameter BlockSize = new FloatParameter(0f);
-
         public FloatParameter BlockSizeJitter = new FloatParameter(0f);
-
-        [Range(0f, 25f)]
         public FloatParameter MaxRGBSplitX = new FloatParameter(1f);
-
-        [Range(0f, 25f)]
         public FloatParameter MaxRGBSplitY = new FloatParameter(1f);
 
         Material _material;
+
         static class ShaderIDs
         {
             internal static readonly int Speed = Shader.PropertyToID("_Speed");
@@ -39,7 +33,7 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void Setup()
         {
-            _material = CoreUtils.CreateEngineMaterial("Owl Post-Processing/Glitch");
+            _material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/Glitch");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier dest)
@@ -57,7 +51,7 @@ namespace SleeplessOwl.URPPostProcessing
             _material.SetFloat(ShaderIDs.MaxRGBSplitX, MaxRGBSplitX.value);
             _material.SetFloat(ShaderIDs.MaxRGBSplitY, MaxRGBSplitY.value);
 
-            cb.SetSourceTexture(source);
+            cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(_material, dest);
         }
 

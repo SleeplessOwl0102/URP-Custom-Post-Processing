@@ -1,4 +1,4 @@
-﻿Shader "URP Custom PostEffect/World Position"
+﻿Shader "SleeplessOwl/Post-Process/World Position"
 {
 	SubShader
 	{
@@ -24,8 +24,8 @@
 				float4 ray : TEXCOORD2;
 			};
 
-			TEXTURE2D(_PostSource);
-			TEXTURE2D(_CameraDepthTexture);
+			TEXTURE2D_X(_PostSource);
+			TEXTURE2D_X(_CameraDepthTexture);
 			SAMPLER(sampler_PostSource);
 
 			float4 _PostSource_TexelSize;
@@ -50,7 +50,7 @@
 			float4 frag(v2f i) : SV_Target
 			{
 				//i.vertex.xy == i.uv.xy * _ScreenParams.xy
-				float depth = LOAD_TEXTURE2D(_CameraDepthTexture, i.vertex.xy).r;
+				float depth = LOAD_TEXTURE2D_X(_CameraDepthTexture, i.vertex.xy).r;
 				depth = Linear01Depth(depth, _ZBufferParams);
 				float drawPass = depth < .9;
 
@@ -66,7 +66,7 @@
 				half3 f2 = smoothstep(2 / _UnitCubeGridCount, 4 / _UnitCubeGridCount, fw);
 				bc = lerp(lerp(bc, 0.5, f1), 0, f2);
 				
-				float3 oriCol = LOAD_TEXTURE2D(_PostSource, i.vertex.xy).rgb;
+				float3 oriCol = LOAD_TEXTURE2D_X(_PostSource, i.vertex.xy).rgb;
 				float3 combineCol;
 				combineCol = lerp(oriCol, bc, length(bc) * drawPass);
 #if ADD_MODE

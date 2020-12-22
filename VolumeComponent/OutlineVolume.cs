@@ -26,13 +26,13 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void Setup()
         {
-            material = CoreUtils.CreateEngineMaterial("URP Custom PostEffect/Outline");
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/Outline");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier destination)
         {
             UpdateParameter();
-            cb.SetSourceTexture(source);
+            cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(material, destination);
         }
     }

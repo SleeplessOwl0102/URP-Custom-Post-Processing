@@ -1,4 +1,4 @@
-﻿Shader "URP Custom PostEffect/Outline"
+﻿Shader "SleeplessOwl/Post-Process/Outline"
 {
 	SubShader
 	{

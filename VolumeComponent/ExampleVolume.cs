@@ -20,13 +20,13 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier dest)
         {
-            cb.SetSourceTexture(source);
+            cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(material, dest);
         }
 
         public override void Setup()
         {
-            material = CoreUtils.CreateEngineMaterial("Owl Post-Processing/Example");
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/Example");
         }
 
     }

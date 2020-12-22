@@ -1,4 +1,4 @@
-﻿Shader "URP Custom PostEffect/Custom Blit"
+﻿Shader "SleeplessOwl/Post-Process/Custom Blit"
 {
     SubShader
     {

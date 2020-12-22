@@ -6,7 +6,7 @@ namespace SleeplessOwl.URPPostProcessing
 {
     public static class Util_PP
     {
-        public static readonly int PostSourceID = Shader.PropertyToID("_PostSource");
+        public static readonly int PostBufferID = Shader.PropertyToID("_PostSource");
 
         //URP default color buffer
         public static readonly RenderTargetIdentifier ColorBufferId = Shader.PropertyToID("_CameraColorTexture");
@@ -14,9 +14,9 @@ namespace SleeplessOwl.URPPostProcessing
         //URP default pre depth buffer
         public static readonly RenderTargetIdentifier DepthBufferId = Shader.PropertyToID("_CameraDepthTexture");
 
-        public static void SetSourceTexture(this CommandBuffer cb, RenderTargetIdentifier identifier)
+        public static void SetPostProcessSourceTexture(this CommandBuffer cb, RenderTargetIdentifier identifier)
         {
-            cb.SetGlobalTexture(PostSourceID, identifier);
+            cb.SetGlobalTexture(PostBufferID, identifier);
         }
 
         public static void DrawFullScreenTriangle(this CommandBuffer cb, Material material, RenderTargetIdentifier destination, int shaderPass = 0)

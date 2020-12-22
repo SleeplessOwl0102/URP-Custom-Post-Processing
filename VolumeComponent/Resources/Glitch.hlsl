@@ -55,9 +55,11 @@ float3 SampleTexture(float2 uv)
 
 float4 Fragment(Varyings i) : SV_Target
 {
+	UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+	
 	half2 block = randomNoise(floor(i.uv * _BlockSize));
 
-	float displaceNoise = pow(block.x, 8.0) * pow(block.x, 3.0);
+	float displaceNoise = pow(block.x, 20);
 	float splitRGBNoise = pow(randomNoise(7.2341), 17.0);
 	float offsetX = displaceNoise - splitRGBNoise * _MaxRGBSplitX;
 	float offsetY = displaceNoise - splitRGBNoise * _MaxRGBSplitY;
