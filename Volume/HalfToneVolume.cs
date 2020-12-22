@@ -1,11 +1,10 @@
-﻿using SleeplessOwl.URPPostProcessing;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Rendering;
-namespace SleeplessOwl.PostProcess
+namespace SleeplessOwl.URPPostProcessing
 {
-    [Serializable, VolumeComponentMenu("Custom Post-processing/HalfTone")]
-    public sealed class HalfToneVolume : CustomVolumeComponent
+    [Serializable, VolumeComponentMenu("SleeplessOwl PostProcessing/HalfTone")]
+    public sealed class HalfToneVolume : PostProcessVolumeComponent
     {
         public BoolParameter _visibleInSceneview = new BoolParameter(true);
         public FloatParameter _Density = new FloatParameter(0);

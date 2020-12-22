@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PostProcessOrderConfig
   m_EditorClassIdentifier: 
   afterSkybox:
-  - SleeplessOwl.Volume.OutlineVolume
+  - SleeplessOwl.URPPostProcessing.OutlineVolume
   beforePostProcess:
-  - SleeplessOwl.Indev.FogVolume
-  - SleeplessOwl.Volume.WorldPositionVolume
-  - SleeplessOwl.PostProcess.HalfToneVolume
-  - SleeplessOwl.URPPostProcessing.Glitch
+  - SleeplessOwl.URPPostProcessing.GlitchVolume
+  - SleeplessOwl.URPPostProcessing.HalfToneVolume
+  - SleeplessOwl.URPPostProcessing.WorldPositionVolume
+  - SleeplessOwl.URPPostProcessing.Indev.FogVolume
   afterPostProcess:
   - SleeplessOwl.URPPostProcessing.ExampleVolume

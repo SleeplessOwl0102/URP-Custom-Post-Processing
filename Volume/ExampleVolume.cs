@@ -5,8 +5,8 @@ using UnityEngine.Rendering;
 
 namespace SleeplessOwl.URPPostProcessing
 {
-    [Serializable, VolumeComponentMenu("Owl/HalfToneOnlyPoint")]
-    public class ExampleVolume : CustomVolumeComponent
+    [Serializable, VolumeComponentMenu("SleeplessOwl PostProcessing/Example Heart")]
+    public class ExampleVolume : PostProcessVolumeComponent
     {
         public BoolParameter Enable = new BoolParameter(false);
         private Material material;

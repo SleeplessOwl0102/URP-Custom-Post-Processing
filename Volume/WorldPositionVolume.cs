@@ -1,12 +1,11 @@
-using SleeplessOwl.URPPostProcessing;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace SleeplessOwl.Volume
+namespace SleeplessOwl.URPPostProcessing
 {
-    [Serializable, VolumeComponentMenu("Custom Post-processing/ WorldScan")]
-    public sealed class WorldPositionVolume : CustomVolumeComponent
+    [Serializable, VolumeComponentMenu("SleeplessOwl PostProcessing/World Position")]
+    public sealed class WorldPositionVolume : PostProcessVolumeComponent
     {
         public BoolParameter ColorAddMode = new BoolParameter(true);
         public FloatParameter GridSize = new FloatParameter(0f);
@@ -38,7 +37,7 @@ namespace SleeplessOwl.Volume
             material.SetKeyWord("ADD_MODE", ColorAddMode.value);
             material.SetFloat(_UnitCubeGridCount, 1 / GridSize.value);
             material.SetFloat(_GridLineWidth, GridLineWidth.value);
-            
+
             cb.SetSourceTexture(source);
             cb.DrawFullScreenTriangle(material, destination);
         }

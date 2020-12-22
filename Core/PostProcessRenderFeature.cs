@@ -7,9 +7,9 @@ namespace SleeplessOwl.URPPostProcessing
     {
         public PostProcessOrderConfig config;
 
-        private CustomPostProcessRenderPass afterSkyboxPass;
-        private CustomPostProcessRenderPass beforeNativePostProcessPass;
-        private CustomPostProcessRenderPass afterNativePostProcessPass;
+        private PostProcessRenderPass afterSkyboxPass;
+        private PostProcessRenderPass beforeNativePostProcessPass;
+        private PostProcessRenderPass afterNativePostProcessPass;
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
@@ -20,14 +20,12 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void Create()
         {
-            
-
 #if UNITY_EDITOR
             config.OnDataChange = Create;
 #endif
-            afterSkyboxPass = new CustomPostProcessRenderPass(RenderPassEvent.AfterRenderingSkybox, config);
-            beforeNativePostProcessPass = new CustomPostProcessRenderPass(RenderPassEvent.BeforeRenderingPostProcessing, config);
-            afterNativePostProcessPass = new CustomPostProcessRenderPass(RenderPassEvent.AfterRenderingPostProcessing, config);
+            afterSkyboxPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingSkybox, config);
+            beforeNativePostProcessPass = new PostProcessRenderPass(RenderPassEvent.BeforeRenderingPostProcessing, config);
+            afterNativePostProcessPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingPostProcessing, config);
         }
     }
 }

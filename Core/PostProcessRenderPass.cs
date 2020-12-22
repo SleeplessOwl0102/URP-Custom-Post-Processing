@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace SleeplessOwl.URPPostProcessing
 {
-    public class CustomPostProcessRenderPass : ScriptableRenderPass
+    public class PostProcessRenderPass : ScriptableRenderPass
     {
         private string displayName;
         private int cycleRT_1 = Shader.PropertyToID("cycleRT_1");
         private int cycleRT_2 = Shader.PropertyToID("cycleRT_2");
         private List<Type> volumeTypeList;
-        private List<CustomVolumeComponent> activeVolumeList;
+        private List<PostProcessVolumeComponent> activeVolumeList;
         private GraphicsFormat defaultHDRFormat;
-        private GraphicsFormat currentFormat;
 
-        public CustomPostProcessRenderPass(RenderPassEvent passEvent, PostProcessOrderConfig config)
+        public PostProcessRenderPass(RenderPassEvent passEvent, PostProcessOrderConfig config)
         {
             displayName = $"CustomPostProcessPass {passEvent}";
             renderPassEvent = passEvent;
 
-            activeVolumeList = new List<CustomVolumeComponent>();
+            activeVolumeList = new List<PostProcessVolumeComponent>();
             volumeTypeList = new List<Type>();
 
             var piplineAsset = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
@@ -39,19 +39,14 @@ namespace SleeplessOwl.URPPostProcessing
                     : GraphicsFormat.R8G8B8A8_UNorm;
             }
 
-            //collect all volume belong this timing
+            //collect all custom postprocess volume belong this InjectionPoint
             var allVolumeTypes = VolumeManager.instance.baseComponentTypes;
             foreach (var volumeName in config.GetVolumeList((InjectionPoint)renderPassEvent))
             {
                 var volumeType = allVolumeTypes.ToList().Find((t) => { return t.ToString() == volumeName; });
 
                 //check volume type is valid
-                if (volumeType == null)
-                {
-                    Debug.LogError($"Can't find Volume : [{volumeName}] , Remove it from config", config);
-                    continue;
-                }
-
+                Assert.IsNotNull(volumeType, $"Can't find Volume : [{volumeName}] , Remove it from config");
                 volumeTypeList.Add(volumeType);
             }
         }
@@ -64,12 +59,12 @@ namespace SleeplessOwl.URPPostProcessing
             if (renderingData.cameraData.postProcessEnabled == false)
                 return;
 
-            //collect current frame active volume
+            //collect active pp volume
             activeVolumeList.Clear();
             bool isSceneViewCamera = renderingData.cameraData.isSceneViewCamera;
             foreach (var item in volumeTypeList)
             {
-                var volumeComp = VolumeManager.instance.stack.GetComponent(item) as CustomVolumeComponent;
+                var volumeComp = VolumeManager.instance.stack.GetComponent(item) as PostProcessVolumeComponent;
 
                 if (volumeComp.IsActive() == false)
                     continue;
@@ -104,7 +99,7 @@ namespace SleeplessOwl.URPPostProcessing
                 }
                 else
                 {
-                    Util_PP.Swap(ref target, ref source);
+                    CoreUtils.Swap(ref target, ref source);
                 }
 
                 RenderTargetIdentifier renderTarget;

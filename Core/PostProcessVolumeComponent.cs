@@ -10,9 +10,9 @@ namespace SleeplessOwl.URPPostProcessing
         AfterPostProcess = 600,
     }
 
-    public abstract class CustomVolumeComponent : VolumeComponent
+    public abstract class PostProcessVolumeComponent : VolumeComponent
     {
-        protected CustomVolumeComponent()
+        protected PostProcessVolumeComponent()
         {
             string className = GetType().ToString();
             int dotIndex = className.LastIndexOf(".") + 1;

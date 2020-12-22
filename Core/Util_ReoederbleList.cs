@@ -3,37 +3,40 @@ using UnityEditorInternal;
 using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
 
-public static class Util_ReoederbleList
+namespace SleeplessOwl.URPPostProcessing
 {
-    public static ReorderableList CreateAutoLayout(SerializedProperty property, string headers)
+    public static class Util_ReoederbleList
     {
-        var list = new ReorderableList(property.serializedObject, property, true, true, true, true);
-
-        list.drawElementCallback = DrawDefaultElement(list);
-        list.drawHeaderCallback = DrawHeader(headers);
-
-        return list;
-    }
-
-    private static ElementCallbackDelegate DrawDefaultElement(ReorderableList list)
-    {
-        return (rect, index, isActive, isFocused) =>
+        public static ReorderableList CreateAutoLayout(SerializedProperty property, string headers)
         {
-            var property = list.serializedProperty;
-            for (var i = 0; i < property.arraySize; i++)
+            var list = new ReorderableList(property.serializedObject, property, true, true, true, true);
+
+            list.drawElementCallback = DrawDefaultElement(list);
+            list.drawHeaderCallback = DrawHeader(headers);
+
+            return list;
+        }
+
+        private static ElementCallbackDelegate DrawDefaultElement(ReorderableList list)
+        {
+            return (rect, index, isActive, isFocused) =>
             {
-                rect.height = EditorGUI.GetPropertyHeight(property.GetArrayElementAtIndex(index));
-                EditorGUI.PropertyField(rect, property.GetArrayElementAtIndex(index), GUIContent.none);
-            }
-        };
-    }
+                var property = list.serializedProperty;
+                for (var i = 0; i < property.arraySize; i++)
+                {
+                    rect.height = EditorGUI.GetPropertyHeight(property.GetArrayElementAtIndex(index));
+                    EditorGUI.PropertyField(rect, property.GetArrayElementAtIndex(index), GUIContent.none);
+                }
+            };
+        }
 
-    private static HeaderCallbackDelegate DrawHeader(string header)
-    {
-        return (rect) =>
+        private static HeaderCallbackDelegate DrawHeader(string header)
         {
-            EditorGUI.LabelField(rect, header, EditorStyles.boldLabel);
-        };
-    }
+            return (rect) =>
+            {
+                EditorGUI.LabelField(rect, header, EditorStyles.boldLabel);
+            };
+        }
 
+    }
 }

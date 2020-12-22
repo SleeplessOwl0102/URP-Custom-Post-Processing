@@ -1,12 +1,11 @@
-﻿using SleeplessOwl.URPPostProcessing;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace SleeplessOwl.Volume
+namespace SleeplessOwl.URPPostProcessing
 {
-    [Serializable, VolumeComponentMenu("Custom Post-processing/Outline")]
-    public sealed class OutlineVolume : CustomVolumeComponent
+    [Serializable, VolumeComponentMenu("SleeplessOwl PostProcessing/Outline")]
+    public sealed class OutlineVolume : PostProcessVolumeComponent
     {
         public FloatParameter SampleDistance = new FloatParameter(0);
         public FloatParameter StrengthPow = new FloatParameter(30);

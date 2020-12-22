@@ -27,6 +27,7 @@ namespace SleeplessOwl.URPPostProcessing
 
 #if UNITY_EDITOR
         public Action OnDataChange;
+
         private void OnValidate()
         {
             OnDataChange?.Invoke();
@@ -99,10 +100,11 @@ namespace SleeplessOwl.URPPostProcessing.CEditor
 
                 foreach (var item in VolumeManager.instance.baseComponentTypes)
                 {
-                    var comp = VolumeManager.instance.stack.GetComponent(item) as CustomVolumeComponent;
+                    var comp = VolumeManager.instance.stack.GetComponent(item) as PostProcessVolumeComponent;
 
                     if (comp == null)
                         continue;
+
                     if (comp.InjectionPoint != injectionPoint)
                         continue;
 
@@ -116,7 +118,7 @@ namespace SleeplessOwl.URPPostProcessing.CEditor
             {
                 return () =>
                 {
-                    var data = userData as CustomVolumeComponent;
+                    var data = userData as PostProcessVolumeComponent;
                     var typeName = data.GetType().ToString();
                     var list = instance.GetVolumeList(customInjectionPoint);
                     if (list.Contains(typeName) == false)
