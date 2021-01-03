@@ -1,4 +1,4 @@
-﻿Shader "SleeplessOwl/Post-Process/HalfTone"
+﻿Shader "SleeplessOwl/Post-Processing/HalfTone"
 {
 	SubShader
 	{
@@ -42,6 +42,7 @@
 			v2f vert(appdata v)
 			{
 				v2f o;
+
 				o.vertex = GetFullScreenTriangleVertexPosition(v.vertexID);
 				o.uv.xy = GetFullScreenTriangleTexCoord(v.vertexID);
 
@@ -58,7 +59,7 @@
 
 			float4 frag(v2f i) : SV_Target
 			{
-				//float3 texColor = LOAD_TEXTURE2D_X(_PostSource, i.uv.xy * _ScreenParams.xy).rgb;
+
 				float3 texColor = SAMPLE_TEXTURE2D_X(_PostSource, sampler_PostSource, i.uv.xy).rgb;
 
 				float lightness = (texColor.r * _ColorFactor.r + texColor.g * _ColorFactor.g + texColor.b * _ColorFactor.b) * _Lightness;

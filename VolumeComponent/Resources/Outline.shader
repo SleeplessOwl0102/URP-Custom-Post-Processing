@@ -1,4 +1,4 @@
-﻿Shader "SleeplessOwl/Post-Process/Outline"
+﻿Shader "SleeplessOwl/Post-Processing/Outline"
 {
 	SubShader
 	{
@@ -18,7 +18,6 @@
 			struct appdata
 			{
 				uint vertexID : SV_VertexID;
-				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -68,8 +67,6 @@
 			v2f vert(appdata v)
 			{
 				v2f o;
-
-				UNITY_SETUP_INSTANCE_ID(v);
 				o.vertex = GetFullScreenTriangleVertexPosition(v.vertexID);
 				o.uv.xy = GetFullScreenTriangleTexCoord(v.vertexID);
 
@@ -100,17 +97,15 @@
 
 				float3 colOri = LOAD_TEXTURE2D(_PostSource, i.uv.xy * _ScreenParams.xy).rgb;
 				float depth = Linear01Depth(LOAD_TEXTURE2D(_CameraDepthTexture, i.uv.xy * _ScreenParams.xy).r);
-
-				//讓中景不要畫outline
-				depth *= 4;
-				float value = pow(depth - .5, 8) * 256;
-				value = pow(saturate(value + .2), 2);
-
-				//float3 colOutline = min(1, (outline + 1 - (value * .25))) * colOri.rgb;
 				float3 colOutline = min(1, (outline + .8)) * colOri.rgb;
-				
-				return float4(lerp(colOri, colOutline, value), 1);
-				return float4(value.rrr, 1);
+
+				////ignore mid view
+				//depth *= 4;
+				//float value = pow(depth - .5, 8) * 256;
+				//value = pow(saturate(value + .2), 2);
+				//return float4(lerp(colOri, colOutline, value), 1);
+
+				return float4(colOutline, 1);
 			}
 			ENDHLSL
 		}

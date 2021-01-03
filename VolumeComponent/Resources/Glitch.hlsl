@@ -5,7 +5,6 @@
 struct Attributes
 {
 	uint vertexID : SV_VertexID;
-	UNITY_VERTEX_INPUT_INSTANCE_ID
 };
 
 struct Varyings
@@ -17,7 +16,6 @@ struct Varyings
 Varyings Vertex(Attributes input)
 {
 	Varyings output;
-	UNITY_SETUP_INSTANCE_ID(input);
 	UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
 	output.pos = GetFullScreenTriangleVertexPosition(input.vertexID);
 	output.uv = GetFullScreenTriangleTexCoord(input.vertexID);
@@ -28,7 +26,6 @@ float _Speed;
 float _BlockSize;
 float _MaxRGBSplitX;
 float _MaxRGBSplitY;
-
 
 TEXTURE2D_X(_PostSource);
 SAMPLER(sampler_PostSource);

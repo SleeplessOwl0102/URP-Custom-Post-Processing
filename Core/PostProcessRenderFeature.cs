@@ -21,6 +21,8 @@ namespace SleeplessOwl.URPPostProcessing
         public override void Create()
         {
 #if UNITY_EDITOR
+            if (config == null)
+                return;
             config.OnDataChange = Create;
 #endif
             afterSkyboxPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingSkybox, config);

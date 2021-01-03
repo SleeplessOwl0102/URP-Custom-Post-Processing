@@ -1,4 +1,4 @@
-Shader "SleeplessOwl/Post-Process/Glitch"
+Shader "SleeplessOwl/Post-Processing/Glitch"
 {
     SubShader
     {

@@ -18,15 +18,21 @@ namespace SleeplessOwl.URPPostProcessing
             return SampleDistance.value != 0;
         }
 
-        public void UpdateParameter()
+        static class IDs
         {
-            material.SetFloat("_sampleDistance", SampleDistance.value);
-            material.SetFloat("_strengthPow", StrengthPow.value);
+            internal readonly static int _sampleDistance = Shader.PropertyToID("_sampleDistance");
+            internal readonly static int _strengthPow = Shader.PropertyToID("_strengthPow");
         }
 
-        public override void Setup()
+        public void UpdateParameter()
         {
-            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/Outline");
+            material.SetFloat(IDs._sampleDistance, SampleDistance.value);
+            material.SetFloat(IDs._strengthPow, StrengthPow.value);
+        }
+
+        public override void Initialize()
+        {
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Processing/Outline");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier destination)

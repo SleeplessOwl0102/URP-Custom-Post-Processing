@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21f170b640032a4ba47bfe9e6497f01, type: 3}
   m_Name: WorldScanVolume
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   ColorAddMode:
     m_OverrideState: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7443357ba9cb024f9e0f59d75c1c066, type: 3}
   m_Name: HalfToneOnlyPointVolume
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   _visibleInSceneview:
     m_OverrideState: 1
@@ -101,28 +101,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   m_AdvancedMode: 0
-  block:
+  Speed:
     m_OverrideState: 1
-    m_Value: 0.299
-    min: 0
-    max: 1
-  drift:
-    m_OverrideState: 0
-    m_Value: 0.477
-    min: 0
-    max: 1
-  jitter:
-    m_OverrideState: 0
-    m_Value: 0.564
-    min: 0
-    max: 1
-  jump:
-    m_OverrideState: 0
-    m_Value: 0.537
-    min: 0
-    max: 1
-  shake:
-    m_OverrideState: 0
-    m_Value: 0.564
-    min: 0
-    max: 1
+    m_Value: 4.97
+  BlockSize:
+    m_OverrideState: 1
+    m_Value: 7.26
+  BlockSizeJitter:
+    m_OverrideState: 1
+    m_Value: 119.41
+  MaxRGBSplitX:
+    m_OverrideState: 1
+    m_Value: 3.26
+  MaxRGBSplitY:
+    m_OverrideState: 1
+    m_Value: 9.28

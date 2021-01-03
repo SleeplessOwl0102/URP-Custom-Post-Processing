@@ -1,4 +1,4 @@
-﻿Shader "SleeplessOwl/Post-Process/World Position"
+﻿Shader "SleeplessOwl/Post-Processing/World Position"
 {
 	SubShader
 	{

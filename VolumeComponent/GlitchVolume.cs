@@ -17,7 +17,7 @@ namespace SleeplessOwl.URPPostProcessing
 
         Material _material;
 
-        static class ShaderIDs
+        static class IDs
         {
             internal static readonly int Speed = Shader.PropertyToID("_Speed");
             internal static readonly int BlockSize = Shader.PropertyToID("_BlockSize");
@@ -31,9 +31,9 @@ namespace SleeplessOwl.URPPostProcessing
         public override bool visibleInSceneView => false;
 
 
-        public override void Setup()
+        public override void Initialize()
         {
-            _material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/Glitch");
+            _material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Processing/Glitch");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier dest)
@@ -42,19 +42,17 @@ namespace SleeplessOwl.URPPostProcessing
                 return;
 
             var time = Time.time;
-            _material.SetInt(ShaderIDs.Seed, (int)(time * 10000));
+            _material.SetInt(IDs.Seed, (int)(time * 10000));
 
             float jitter = BlockSizeJitter.value * .5f;
             float size = Random.Range(BlockSize.value - jitter, BlockSize.value + jitter);
-            _material.SetFloat(ShaderIDs.Speed, Speed.value);
-            _material.SetFloat(ShaderIDs.BlockSize, size);
-            _material.SetFloat(ShaderIDs.MaxRGBSplitX, MaxRGBSplitX.value);
-            _material.SetFloat(ShaderIDs.MaxRGBSplitY, MaxRGBSplitY.value);
+            _material.SetFloat(IDs.Speed, Speed.value);
+            _material.SetFloat(IDs.BlockSize, size);
+            _material.SetFloat(IDs.MaxRGBSplitX, MaxRGBSplitX.value);
+            _material.SetFloat(IDs.MaxRGBSplitY, MaxRGBSplitY.value);
 
             cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(_material, dest);
         }
-
-
     }
 }

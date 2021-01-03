@@ -1,4 +1,4 @@
-﻿Shader "SleeplessOwl/Post-Process/Custom Blit"
+﻿Shader "SleeplessOwl/Post-Processing/Custom Blit"
 {
     SubShader
     {

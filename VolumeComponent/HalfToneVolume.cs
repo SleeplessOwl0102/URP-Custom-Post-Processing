@@ -16,34 +16,61 @@ namespace SleeplessOwl.URPPostProcessing
         public ColorParameter _PointColor = new ColorParameter(new Color(0, 0, 0, 1));
         public ColorParameter _ColorFactor = new ColorParameter(new Color(1, 1, 1, 1));
 
-        Material material;
+        private Material material;
 
+        //Define this Post-Processing will be executed in which timing in URP pipeline.
         public override InjectionPoint InjectionPoint => InjectionPoint.BeforePostProcess;
+
+        //Default is true.
         public override bool visibleInSceneView => _visibleInSceneview.value;
+
+        //If return false, will skip this Post-Processing.
+        //You should ensure the default parameter value will return false in this method, let disable volume component work.
         public override bool IsActive() => _Density.value != 0;
 
-        public override void Setup()
+        //Cache parameter ids to avoid do the same thing every update.
+        static class IDs
         {
-            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/HalfTone");
+            internal readonly static int _Density = Shader.PropertyToID("_Density");
+            internal readonly static int _Radius = Shader.PropertyToID("_Radius");
+            internal readonly static int _SmoothEdge = Shader.PropertyToID("_SmoothEdge");
+            internal readonly static int _HalfToneFactor = Shader.PropertyToID("_HalfToneFactor");
+            internal readonly static int _SourceFactor = Shader.PropertyToID("_SourceFactor");
+            internal readonly static int _Lightness = Shader.PropertyToID("_Lightness");
+            internal readonly static int _Color01 = Shader.PropertyToID("_Color01");
+            internal readonly static int _ColorFactor = Shader.PropertyToID("_ColorFactor");
         }
 
-        public void UpdateParameter()
+        //Create shader material.
+        //You should put shader in the Resources folder, ensure it will be included in Asset Bundle, or add it use another way by yourself.
+        public override void Initialize()
         {
-            material.SetFloat("_Density", _Density.value);
-            material.SetFloat("_Radius", _Radius.value);
-            material.SetFloat("_SmoothEdge", _SmoothEdge.value);
-            material.SetFloat("_HalfToneFactor", _HalfToneFactor.value);
-            material.SetFloat("_SourceFactor", _SourceFactor.value);
-            material.SetFloat("_Lightness", _Lightness.value);
-            material.SetColor("_Color01", _PointColor.value);
-            material.SetColor("_ColorFactor", _ColorFactor.value);
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Processing/HalfTone");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier destination)
         {
-            UpdateParameter();
+            //Update parameter
+            material.SetFloat(IDs._Density, _Density.value);
+            material.SetFloat(IDs._Radius, _Radius.value);
+            material.SetFloat(IDs._SmoothEdge, _SmoothEdge.value);
+            material.SetFloat(IDs._HalfToneFactor, _HalfToneFactor.value);
+            material.SetFloat(IDs._SourceFactor, _SourceFactor.value);
+            material.SetFloat(IDs._Lightness, _Lightness.value);
+            material.SetColor(IDs._Color01, _PointColor.value);
+            material.SetColor(IDs._ColorFactor, _ColorFactor.value);
+
+            //Set RenderTexture for shader use.
             cb.SetPostProcessSourceTexture(source);
+
+            //Set render target and draw.
             cb.DrawFullScreenTriangle(material, destination);
+        }
+
+        //Do something before Destroy(), if you need.
+        protected override void CleanUp()
+        {
+
         }
     }
 

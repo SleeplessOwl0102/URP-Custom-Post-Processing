@@ -19,6 +19,4 @@ MonoBehaviour:
   - SleeplessOwl.URPPostProcessing.GlitchVolume
   - SleeplessOwl.URPPostProcessing.HalfToneVolume
   - SleeplessOwl.URPPostProcessing.WorldPositionVolume
-  - SleeplessOwl.URPPostProcessing.Indev.FogVolume
-  afterPostProcess:
-  - SleeplessOwl.URPPostProcessing.ExampleVolume
+  afterPostProcess: []

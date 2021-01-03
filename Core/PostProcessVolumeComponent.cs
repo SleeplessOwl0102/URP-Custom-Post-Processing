@@ -19,28 +19,37 @@ namespace SleeplessOwl.URPPostProcessing
             displayName = className.Substring(dotIndex);
         }
 
-        public abstract bool IsActive();
         public virtual InjectionPoint InjectionPoint { get; } = InjectionPoint.BeforePostProcess;
-        public virtual bool visibleInSceneView { get; } = false;
 
-        internal bool isInitialized = false;
+        public virtual bool visibleInSceneView { get; } = true;
 
-        public abstract void Setup();
+        public abstract bool IsActive();
+
+        public abstract void Initialize();
 
         public abstract void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier dest);
+
+        internal bool isInitialized = false;
 
         internal void SetupIfNeed()
         {
             if (isInitialized == true)
                 return;
 
-            Setup();
+            Initialize();
             isInitialized = true;
         }
 
-        internal virtual void CleanUp()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             isInitialized = false;
+            CleanUp();
+        }
+
+        protected virtual void CleanUp()
+        {
+
         }
     }
 }

@@ -11,9 +11,6 @@ namespace SleeplessOwl.URPPostProcessing
         public FloatParameter GridSize = new FloatParameter(0f);
         public FloatParameter GridLineWidth = new FloatParameter(2);
 
-        readonly int _UnitCubeGridCount = Shader.PropertyToID("_UnitCubeGridCount");
-        readonly int _GridLineWidth = Shader.PropertyToID("_GridLineWidth");
-
         Material material;
 
         public override bool visibleInSceneView => true;
@@ -23,20 +20,26 @@ namespace SleeplessOwl.URPPostProcessing
             return GridSize.value > 0 && GridLineWidth.value > 0;
         }
 
-        public int AddModeID = Shader.PropertyToID("ADD_MODE");
-
-        public override void Setup()
+        static class IDs
         {
-            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Process/World Position");
+            internal static readonly int _UnitCubeGridCount = Shader.PropertyToID("_UnitCubeGridCount");
+            internal static readonly int _GridLineWidth = Shader.PropertyToID("_GridLineWidth");
+            internal static readonly int _InverseView = Shader.PropertyToID("_InverseView");
+            internal static readonly string ADD_MODE = "ADD_MODE";
+        }
+
+        public override void Initialize()
+        {
+            material = CoreUtils.CreateEngineMaterial("SleeplessOwl/Post-Processing/World Position");
         }
 
         public override void Render(CommandBuffer cb, Camera camera, RenderTargetIdentifier source, RenderTargetIdentifier destination)
         {
-            material.SetMatrix("_InverseView", camera.cameraToWorldMatrix);
+            material.SetMatrix(IDs._InverseView, camera.cameraToWorldMatrix);
 
-            material.SetKeyWord("ADD_MODE", ColorAddMode.value);
-            material.SetFloat(_UnitCubeGridCount, 1 / GridSize.value);
-            material.SetFloat(_GridLineWidth, GridLineWidth.value);
+            material.SetKeyWord(IDs.ADD_MODE, ColorAddMode.value);
+            material.SetFloat(IDs._UnitCubeGridCount, 1 / GridSize.value);
+            material.SetFloat(IDs._GridLineWidth, GridLineWidth.value);
 
             cb.SetPostProcessSourceTexture(source);
             cb.DrawFullScreenTriangle(material, destination);
