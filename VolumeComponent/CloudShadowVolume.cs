@@ -52,7 +52,7 @@ namespace SleeplessOwl.URPPostProcessing
 
 
             material.SetFloat(IDs._ShadowStrength, ShadowStrength.value);
-            material.SetVector(IDs._ShadowStrength, SmoothStepRange.value);
+            material.SetVector(IDs._SmoothStepRange, SmoothStepRange.value);
 
             //material.SetTexture("_NoiseTexture1", NoiseTexture1.value);
             material.SetVector(IDs._NoiseScale1, NoiseScale1.value);
