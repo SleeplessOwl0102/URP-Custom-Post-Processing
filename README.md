@@ -29,7 +29,7 @@
 
 ![image-20210103235138876](README.assets/image-20210103235138876.png)
 
-透過PackageManager擊後貼上網址 
+透過PackageManager點擊Add package from git URL後貼上網址 
 https://github.com/YuSiangLai/URPCustomPostProcessing.git
 
 ## Render Feature Setting
