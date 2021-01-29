@@ -16,8 +16,8 @@
 * Outline
 * Glitch
 * HalfTone
-* WorldPosition (need enable DepthTexture)
-* CloudShadow (need enable DepthTexture)
+* WorldPosition (need enable DepthTexture in UniversalRenderPipelineAsset)
+* CloudShadow (need enable DepthTexture in UniversalRenderPipelineAsset)
 
 <img src="README.assets/Screen%20Space%20Cloud%20Shadow.gif" alt="Screen Space Cloud Shadow" style="zoom: 67%;" />
 
