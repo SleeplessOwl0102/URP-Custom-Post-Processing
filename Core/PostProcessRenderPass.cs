@@ -81,9 +81,11 @@ namespace SleeplessOwl.URPPostProcessing
             CommandBuffer cb = CommandBufferPool.Get();
             cb.name = displayName;
 
-            var pixelRect = renderingData.cameraData.camera.pixelRect;
-            int width = (int)(pixelRect.width);
-            int height = (int)(pixelRect.height);
+            var cameraData = renderingData.cameraData;
+            var pixelRect = cameraData.camera.pixelRect;
+            float scale = cameraData.isSceneViewCamera ? 1 : cameraData.renderScale;
+            int width = (int)(pixelRect.width * scale);
+            int height = (int)(pixelRect.height * scale);
             cb.GetTemporaryRT(cycleRT_1, width, height, 0, FilterMode.Bilinear, defaultHDRFormat);
             cb.GetTemporaryRT(cycleRT_2, width, height, 0, FilterMode.Bilinear, defaultHDRFormat);
             var target = cycleRT_1;
