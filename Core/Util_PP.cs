@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace SleeplessOwl.URPPostProcessing
@@ -7,12 +6,6 @@ namespace SleeplessOwl.URPPostProcessing
     public static class Util_PP
     {
         public static readonly int PostBufferID = Shader.PropertyToID("_PostSource");
-
-        //URP default color buffer
-        public static readonly RenderTargetIdentifier ColorBufferId = Shader.PropertyToID("_CameraColorTexture");
-
-        //URP default pre depth buffer
-        public static readonly RenderTargetIdentifier DepthBufferId = Shader.PropertyToID("_CameraDepthTexture");
 
         public static void SetPostProcessSourceTexture(this CommandBuffer cb, RenderTargetIdentifier identifier)
         {

@@ -113,9 +113,15 @@ namespace SleeplessOwl.URPPostProcessing
                         || renderPassEvent == RenderPassEvent.AfterRenderingSkybox;
 
                     if (renderToDefaultColorTexture)
-                        renderTarget = Util_PP.ColorBufferId;
+                    {
+                        //可通过相同方式按引用访问值。 在某些情况下，按引用访问值可避免潜在的高开销复制操作，从而提高性能。 例如，以下语句显示如何定义一个用于引用值的 ref 局部变量。
+                        ref ScriptableRenderer renderer = ref cameraData.renderer;
+                        renderTarget = renderer.cameraColorTargetHandle;
+                    }
                     else
+                    {
                         renderTarget = BuiltinRenderTextureType.CameraTarget;
+                    }
                 }
                 else
                 {
