@@ -1,19 +1,19 @@
 {
-	"name": "com.yusiang.urp.postprocess",
-	"version": "0.1.0",
-	"displayName": "URP Custom Post-Processing",
-	"description": "URP custom post-processing",
-	"unity": "2020.2",
-	"dependencies": {
-		"com.unity.render-pipelines.universal": "10.2.2",
-		"com.unity.render-pipelines.core": "10.2.2"
-	},
-	"keywords": [
-		"graphics",
-		"rendering"
-	],
-	"author": {
-		"name": "Yusiang Lai"
-	},
-	"hideInEditor": false
+  "name": "com.yusiang.urp.postprocess",
+  "version": "0.2.0",
+  "displayName": "@URP Custom Post-Processing",
+  "description": "URP custom post-processing",
+  "unity": "2022.1",
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "10.2.2",
+    "com.unity.render-pipelines.core": "10.2.2"
+  },
+  "keywords": [
+    "graphics",
+    "rendering"
+  ],
+  "author": {
+    "name": "Yusiang Lai"
+  },
+  "hideInEditor": false
 }
