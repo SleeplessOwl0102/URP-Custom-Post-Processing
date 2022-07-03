@@ -40,7 +40,7 @@ namespace SleeplessOwl.URPPostProcessing
             }
 
             //collect all custom postprocess volume belong this InjectionPoint
-            var allVolumeTypes = VolumeManager.instance.baseComponentTypes;
+            var allVolumeTypes = VolumeManager.instance.baseComponentTypeArray;
             foreach (var volumeName in config.GetVolumeList((InjectionPoint)renderPassEvent))
             {
                 var volumeType = allVolumeTypes.ToList().Find((t) => { return t.ToString() == volumeName; });
