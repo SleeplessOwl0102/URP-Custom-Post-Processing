@@ -98,7 +98,7 @@ namespace SleeplessOwl.URPPostProcessing.CEditor
             {
                 var menu = new GenericMenu();
 
-                foreach (var item in VolumeManager.instance.baseComponentTypes)
+                foreach (var item in VolumeManager.instance.baseComponentTypeArray)
                 {
                     var comp = VolumeManager.instance.stack.GetComponent(item) as PostProcessVolumeComponent;
 

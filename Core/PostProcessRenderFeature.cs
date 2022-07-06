@@ -13,10 +13,14 @@ namespace SleeplessOwl.URPPostProcessing
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
-            
-            renderer.EnqueuePass(afterSkyboxPass);
-            renderer.EnqueuePass(beforeNativePostProcessPass);
-            renderer.EnqueuePass(afterNativePostProcessPass);
+            if(afterSkyboxPass != null)
+                renderer.EnqueuePass(afterSkyboxPass);
+                
+            if(beforeNativePostProcessPass != null)
+                renderer.EnqueuePass(beforeNativePostProcessPass);
+
+            if(afterNativePostProcessPass != null)
+                renderer.EnqueuePass(afterNativePostProcessPass);
         }
 
         public override void Create()
@@ -26,9 +30,21 @@ namespace SleeplessOwl.URPPostProcessing
                 return;
             config.OnDataChange = Create;
 #endif
-            afterSkyboxPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingSkybox, config);
-            beforeNativePostProcessPass = new PostProcessRenderPass(RenderPassEvent.BeforeRenderingPostProcessing, config);
-            afterNativePostProcessPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingPostProcessing, config);
+
+            if (config.afterSkybox.Count > 0)
+            {
+                afterSkyboxPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingSkybox, config);
+            }
+
+            if (config.beforePostProcess.Count > 0)
+            {
+                beforeNativePostProcessPass = new PostProcessRenderPass(RenderPassEvent.BeforeRenderingPostProcessing, config);
+            }
+
+            if (config.afterPostProcess.Count > 0)
+            {
+                afterNativePostProcessPass = new PostProcessRenderPass(RenderPassEvent.AfterRenderingPostProcessing, config);
+            }
         }
     }
 }
