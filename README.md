@@ -2,13 +2,13 @@
 
 # Intro
 
-一個 URP 自訂義後處理框架，類似於HDRP擴展後處理的方式，另包含了一些自己的實作。
+一个 URP 自订义后处理框架，类似于HDRP扩展后处理的方式，另包含了一些自己的实作。
 
-雖然URP目前可以每個後處理自己寫一個RendererFeature，但當數量多時相當麻煩，所以參照HDRP的方式寫了一個URP版本。
+虽然URP目前可以每个后处理自己写一个RendererFeature，但当数量多时相当麻烦，所以参照HDRP的方式写了一个URP版本。
 
 # Feature
 
-* 可自己排序後處理執行順序
+* 可自己排序后处理执行顺序
 * 支援新版Unity的`Volume System`
 
 # Content
@@ -29,26 +29,26 @@
 
 ![image-20210103235138876](README.assets/image-20210103235138876.png)
 
-透過PackageManager點擊Add package from git URL後貼上網址 
+透过PackageManager点击Add package from git URL后贴上网址
 https://github.com/SleeplessOwl0102/URP-Custom-Post-Processing.git
 
 ## Render Feature Setting
 
-1. 選取專案中的ForwardRendererData，並加入PostProcessRenderFeature。
+1. 选取专案中的ForwardRendererData，并加入PostProcessRenderFeature。
 
 <img src="README.assets/image-20210103211531529.png" alt="image-20210103211531529" style="zoom:50%;" />
 
-2. 拖入自己新增或Package內原始提供的PostProcessOrderConfig。
+2. 拖入自己新增或Package内原始提供的PostProcessOrderConfig。
 
    <img src="README.assets/image-20210103211835888.png" alt="image-20210103211835888" style="zoom:50%;" />
 
-3. 新增並排序自己需要的後處理功能後，即可在場景中透過`Volume Component`使用。
+3. 新增并排序自己需要的后处理功能后，即可在场景中透过`Volume Component`使用。
 
    <img src="README.assets/image-20210103212125330.png" alt="image-20210103212125330" style="zoom:50%;" />
 
 ## Custom Extend
 
-新增一個Class並繼承PostProcessVolumeComponent，並Override提供的Method即可，可參考 [HalfToneVolume.cs](VolumeComponent\HalfToneVolume.cs) 中的註解。
+新增一个Class并继承PostProcessVolumeComponent，并Override提供的Method即可，可参考 [HalfToneVolume.cs](VolumeComponent\HalfToneVolume.cs) 中的注解。
 
 ```c#
 using System;
