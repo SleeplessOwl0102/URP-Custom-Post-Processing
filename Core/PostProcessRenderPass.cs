@@ -26,7 +26,7 @@ namespace SleeplessOwl.URPPostProcessing
             activeVolumeList = new List<PostProcessVolumeComponent>();
             volumeTypeList = new List<Type>();
 
-            var piplineAsset = GraphicsSettings.renderPipelineAsset as UniversalRenderPipelineAsset;
+            var piplineAsset = GraphicsSettings.defaultRenderPipeline as UniversalRenderPipelineAsset;
             if (SystemInfo.IsFormatSupported(GraphicsFormat.B10G11R11_UFloatPack32, FormatUsage.Linear | FormatUsage.Render)
                 && piplineAsset.supportsHDR)
             {
